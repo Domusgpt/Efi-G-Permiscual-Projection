@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://efi-g.local/schemas/avatar_license.schema.json",
+  "title": "AvatarLicense",
+  "type": "object",
+  "required": [
+    "license_id",
+    "avatar_id",
+    "owner_user_id",
+    "status",
+    "audience",
+    "created_at",
+    "scope_version"
+  ],
+  "properties": {
+    "license_id": { "type": "string" },
+    "avatar_id": { "type": "string" },
+    "owner_user_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "paused", "revoked", "deleted"]
+    },
+    "audience": {
+      "type": "string",
+      "enum": ["self", "invited", "customers", "marketplace"]
+    },
+    "allowed_categories": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "blocked_categories": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "review_required_categories": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "max_monthly_jobs": { "type": "integer", "minimum": 0 },
+    "price_cents": { "type": "integer", "minimum": 0 },
+    "currency": { "type": "string", "default": "USD" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": ["string", "null"], "format": "date-time" },
+    "scope_version": { "type": "integer", "minimum": 1 }
+  },
+  "additionalProperties": false
+}
