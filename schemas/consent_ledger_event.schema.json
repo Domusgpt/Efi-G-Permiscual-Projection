@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://efi-g.local/schemas/consent_ledger_event.schema.json",
+  "title": "ConsentLedgerEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "actor_user_id",
+    "subject_id",
+    "timestamp",
+    "scope_version",
+    "signature"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "create",
+        "grant",
+        "update_scope",
+        "pause",
+        "revoke",
+        "delete_request",
+        "dispute_opened",
+        "admin_override"
+      ]
+    },
+    "actor_user_id": { "type": "string" },
+    "subject_id": { "type": "string" },
+    "avatar_id": { "type": "string" },
+    "license_id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "scope_version": { "type": "integer", "minimum": 1 },
+    "reason_code": { "type": "string" },
+    "details": { "type": "object", "additionalProperties": true },
+    "signature": {
+      "type": "object",
+      "required": ["method", "value"],
+      "properties": {
+        "method": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}
