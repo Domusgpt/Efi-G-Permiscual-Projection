@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://efi-g.local/schemas/generation_job.schema.json",
+  "title": "GenerationJob",
+  "type": "object",
+  "required": [
+    "job_id",
+    "user_id",
+    "avatar_id",
+    "license_id",
+    "prompt",
+    "model_profile_id",
+    "policy_decision",
+    "credit_reservation_id",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "job_id": { "type": "string" },
+    "user_id": { "type": "string" },
+    "avatar_id": { "type": "string" },
+    "license_id": { "type": "string" },
+    "prompt": { "type": "string", "minLength": 1 },
+    "model_profile_id": { "type": "string" },
+    "seed": { "type": ["integer", "null"] },
+    "width": { "type": "integer", "minimum": 256, "maximum": 2048 },
+    "height": { "type": "integer", "minimum": 256, "maximum": 2048 },
+    "policy_decision": {
+      "type": "string",
+      "enum": ["allow", "block", "review", "transform", "escalate"]
+    },
+    "credit_reservation_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["created", "queued", "running", "review", "completed", "failed", "cancelled"]
+    },
+    "output_asset_id": { "type": ["string", "null"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": ["string", "null"], "format": "date-time" },
+    "audit_event_id": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}
